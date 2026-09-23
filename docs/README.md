@@ -15,4 +15,5 @@ select **Scene** to hide the gizmos.
 To try the polygon editor, expand **06 · Courier → Polygon fins** and click the
 pen on either fin.
 
-Import [Clipped star](examples/clipped-star.json) for a simple Clip example.
+Import [Clipped star](examples/clipped-star.json) to try clipping at the inner
+stroke edge. Change **Clip at** to compare the three boundaries.

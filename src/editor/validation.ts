@@ -1,5 +1,5 @@
 import { parseGeometry } from '@/editor/geometry.ts'
-import { isOperation, nodeDefinitions } from '@/editor/nodes.ts'
+import { isClipEdge, isOperation, nodeDefinitions } from '@/editor/nodes.ts'
 import type {
   Appearance,
   Blending,
@@ -129,7 +129,25 @@ export function parseScene(value: unknown): SceneRoot {
     const { id, kind, name, children } = record
     const transform = parseTransform(record.value.transform)
 
-    if (kind === 'group' || kind === 'clip') {
+    if (kind === 'clip') {
+      const clipEdge =
+        record.value.clipEdge === undefined ? 'center' : record.value.clipEdge
+
+      if (!isClipEdge(clipEdge)) {
+        throw new Error('Invalid clipping edge')
+      }
+
+      return {
+        id,
+        kind,
+        name,
+        transform,
+        clipEdge,
+        children: children.map(parseNode),
+      }
+    }
+
+    if (kind === 'group') {
       return { id, kind, name, transform, children: children.map(parseNode) }
     }
 

@@ -1,11 +1,11 @@
 import { isOperation } from '@/editor/nodes'
-import type { GroupNode, OperationNode } from '@/editor/nodes'
+import type { ClipNode, GroupNode, OperationNode } from '@/editor/nodes'
 
 export function ChildOrderFields({
   node,
   onReorder,
 }: {
-  node: GroupNode | OperationNode
+  node: GroupNode | ClipNode | OperationNode
   onReorder: (childId: string, direction: -1 | 1) => void
 }) {
   return (

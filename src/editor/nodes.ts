@@ -57,7 +57,15 @@ export interface PolygonNode extends BaseNode {
 export type ShapeNode = PrimitiveNode | PolygonNode
 
 export interface GroupNode extends BaseNode {
-  readonly kind: 'group' | 'clip'
+  readonly kind: 'group'
+  readonly children: readonly SceneNode[]
+}
+
+export type ClipEdge = 'outer' | 'inner' | 'center'
+
+export interface ClipNode extends BaseNode {
+  readonly kind: 'clip'
+  readonly clipEdge: ClipEdge
   readonly children: readonly SceneNode[]
 }
 
@@ -72,7 +80,7 @@ export interface OperationNode extends BaseNode {
   readonly children: readonly SceneNode[]
 }
 
-export type SceneNode = ShapeNode | GroupNode | OperationNode
+export type SceneNode = ShapeNode | GroupNode | ClipNode | OperationNode
 
 export interface NodeProperties extends GeometryProperties {
   name?: string
@@ -80,6 +88,7 @@ export interface NodeProperties extends GeometryProperties {
   style?: Appearance
   blend?: Blending
   vertices?: readonly Point[]
+  clipEdge?: ClipEdge
 }
 
 export interface SceneRoot {
@@ -91,13 +100,17 @@ export interface SceneRoot {
 
 export type SceneBranch = SceneRoot | SceneNode
 
-export type SceneContainer = SceneRoot | GroupNode | OperationNode
+export type SceneContainer = SceneRoot | GroupNode | ClipNode | OperationNode
 
 export type NodeDrag =
   { source: 'library'; kind: NodeKind } | { source: 'scene'; id: string }
 
 export function isOperation(kind: string): kind is OperationKind {
   return kind === 'union' || kind === 'subtract' || kind === 'intersect'
+}
+
+export function isClipEdge(value: unknown): value is ClipEdge {
+  return value === 'outer' || value === 'inner' || value === 'center'
 }
 
 export function canHaveChildren(node: SceneBranch): node is SceneContainer {
@@ -131,7 +144,11 @@ export function createNode(
     transform: { x: 0, y: 0, rotation: 0, scale: 1 },
   }
 
-  if (kind === 'group' || kind === 'clip') {
+  if (kind === 'clip') {
+    return { ...base, kind, clipEdge: 'center', children: [] }
+  }
+
+  if (kind === 'group') {
     return { ...base, kind, children: [] }
   }
 

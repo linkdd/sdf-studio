@@ -1,5 +1,6 @@
 import { clipPaintTemplate } from '@/editor/compiler/templates/clipPaint.ts'
 import type { NodeFunctions } from '@/editor/compiler/types.ts'
+import type { ClipEdge } from '@/editor/nodes.ts'
 
 interface Parameters {
   name: string
@@ -7,7 +8,7 @@ interface Parameters {
   scaleValue: string
   empty: boolean
   group: boolean
-  clip: boolean
+  clipEdge: ClipEdge | null
   active: readonly NodeFunctions[]
 }
 
@@ -17,15 +18,15 @@ export function nodePaintTemplate({
   scaleValue,
   empty,
   group,
-  clip,
+  clipEdge,
   active,
 }: Parameters): string {
   let paint: string
 
   if (empty) {
     paint = 'return vec4(0.0);'
-  } else if (clip) {
-    paint = clipPaintTemplate(local, scaleValue, active)
+  } else if (clipEdge) {
+    paint = clipPaintTemplate(local, scaleValue, active, clipEdge)
   } else if (group) {
     paint = `${local}\n    vec4 result = vec4(0.0);`
 

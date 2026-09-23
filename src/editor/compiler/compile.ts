@@ -69,7 +69,7 @@ export function compile(
       scaleValue: scale,
       empty,
       group: node.kind === 'group',
-      clip: node.kind === 'clip',
+      clipEdge: node.kind === 'clip' ? node.clipEdge : null,
       active,
     })
 

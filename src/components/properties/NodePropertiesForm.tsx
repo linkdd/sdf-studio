@@ -7,6 +7,7 @@ import { ShapeGeometryFields } from '@/components/ShapeGeometryFields'
 import { AppearanceFields } from '@/components/properties/AppearanceFields'
 import { BlendFields } from '@/components/properties/BlendFields'
 import { ChildOrderFields } from '@/components/properties/ChildOrderFields'
+import { ClipFields } from '@/components/properties/ClipFields'
 import { TransformFields } from '@/components/properties/TransformFields'
 import type { NodePropertiesDrawerProps } from '@/components/properties/types'
 
@@ -71,6 +72,8 @@ export function NodePropertiesForm({
         <ShapeGeometryFields node={node} onChange={onChange} />
 
         {'blend' in node && <BlendFields node={node} onChange={onChange} />}
+
+        {node.kind === 'clip' && <ClipFields node={node} onChange={onChange} />}
 
         <TransformFields node={node} onChange={onChange} />
 

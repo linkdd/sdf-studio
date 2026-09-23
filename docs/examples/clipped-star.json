@@ -34,9 +34,9 @@
                 "color": "#8dddc7"
               },
               "stroke": {
-                "enabled": false,
-                "color": "#8dddc7",
-                "width": 0.02
+                "enabled": true,
+                "color": "#e7f5ff",
+                "width": 0.12
               }
             },
             "children": []
@@ -67,7 +67,8 @@
             },
             "children": []
           }
-        ]
+        ],
+        "clipEdge": "inner"
       }
     ]
   }

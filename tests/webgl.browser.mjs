@@ -518,6 +518,79 @@ outColor = vec4(uvec4(bits, bits >> 8u, bits >> 16u, bits >> 24u) & uvec4(255u))
       true
     )
 
+    for (const clipEdge of ['inner', 'center', 'outer']) {
+      const clipping = node('clip', {
+        clipEdge,
+        children: [
+          node('circle', { style: style('#ff0000', '#0000ff', 0.4) }),
+          node('box', { width: 8, height: 8, style: style('#00ff00') }),
+        ],
+      })
+      const green = [0, 255, 0, 255]
+      const blue = [0, 0, 255, 255]
+      const clear = [0, 0, 0, 0]
+
+      sample(
+        [clipping],
+        [
+          [`${clipEdge} clip inside fill`, 0.7, 0, green],
+          [
+            `${clipEdge} clip inner stroke half`,
+            0.9,
+            0,
+            clipEdge === 'inner' ? blue : green,
+          ],
+          [
+            `${clipEdge} clip outer stroke half`,
+            1.1,
+            0,
+            clipEdge === 'outer' ? green : blue,
+          ],
+          [`${clipEdge} clip outside stroke`, 1.3, 0, clear],
+        ],
+        true
+      )
+      sample([clipping], [[`${clipEdge} clip keeps base SDF`, 1.1, 0, 0.1]])
+
+      const scaled = structuredClone(clipping)
+      scaled.transform = transform(2, 1, 90, 0.5)
+      scaled.children[0].transform = transform(0, 0, 0, 2)
+      sample(
+        [scaled],
+        [
+          [
+            `${clipEdge} clip transformed inner stroke`,
+            2,
+            1.9,
+            clipEdge === 'inner' ? blue : green,
+          ],
+          [
+            `${clipEdge} clip transformed outer stroke`,
+            2,
+            2.1,
+            clipEdge === 'outer' ? green : blue,
+          ],
+        ],
+        true
+      )
+
+      for (const stroke of [
+        { enabled: false, color: '#0000ff', width: 0.4 },
+        { enabled: true, color: '#0000ff', width: 0 },
+      ]) {
+        const noStroke = structuredClone(clipping)
+        noStroke.children[0].style.stroke = stroke
+        sample(
+          [noStroke],
+          [
+            [`${clipEdge} no stroke inside`, 0.9, 0, green],
+            [`${clipEdge} no stroke outside`, 1.1, 0, clear],
+          ],
+          true
+        )
+      }
+    }
+
     const base = node('circle'),
       cutter = node('circle', { transform: transform(0, 0, 0, 0.5) })
 

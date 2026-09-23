@@ -5,7 +5,7 @@ import type {
   SceneNode,
   SceneRoot,
 } from '@/editor/nodes'
-import { canHaveChildren } from '@/editor/nodes.ts'
+import { canHaveChildren, isClipEdge } from '@/editor/nodes.ts'
 import { isPolygonVertices } from '@/editor/polygon.ts'
 
 export function createScene(): SceneRoot {
@@ -192,6 +192,13 @@ export function updateNodeProperties(
         transform: properties.transform ?? node.transform,
         ...('style' in node ? { style: properties.style ?? node.style } : {}),
         ...('blend' in node ? { blend: properties.blend ?? node.blend } : {}),
+        ...(node.kind === 'clip'
+          ? {
+              clipEdge: isClipEdge(properties.clipEdge)
+                ? properties.clipEdge
+                : node.clipEdge,
+            }
+          : {}),
         ...(node.kind === 'polygon'
           ? {
               vertices: isPolygonVertices(properties.vertices)

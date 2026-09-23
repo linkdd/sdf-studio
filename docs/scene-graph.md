@@ -79,7 +79,8 @@ Scene
 ```
 
 The circle stays visible. The star is drawn over it, but only inside the
-circle's geometry. Add more content children to draw them over the earlier
+chosen clipping edge (outer stroke edge, inner stroke edge, or geometry
+boundary). See [Clip properties](node-properties.md#clip). Add more content children to draw them over the earlier
 ones. Each keeps its own fill and stroke. An empty base hides all the content;
 an empty content node does not hide the base. Clip changes what is rendered;
 it does not constrain the gizmos. Hide the base's fill and stroke if you want

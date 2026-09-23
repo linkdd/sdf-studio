@@ -230,3 +230,17 @@ The [Clip](node-library.md#clip) has the shared
 child is the **Base** and the others are **Content**. Reorder the children to
 choose the base or change the content's drawing order. Each child keeps its own
 appearance; Clip has no fill, stroke, or blending settings.
+
+**Clip at** chooses the boundary used to mask the content:
+
+| Value | Where content stops |
+| --- | --- |
+| Outer stroke edge | Half the base's stroke width outside its geometry boundary. |
+| Inner stroke edge | Half the base's stroke width inside its geometry boundary. |
+| Stroke center (geometry boundary) | Exactly at the geometry boundary; this is the default. |
+
+The base itself is still drawn normally. Inner edge keeps the whole stroke
+visible; outer edge allows content to cover it. The stroke width follows the
+base's transforms. If its stroke is disabled or has zero width, all three
+choices use the geometry boundary. This setting affects the rendered colors,
+not the base distance returned by `sdScene`.

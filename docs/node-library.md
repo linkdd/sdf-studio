@@ -129,6 +129,7 @@ See [properties](node-properties.md#intersect).
 Clip keeps the first child visible and draws all the following children inside
 its geometry. Each child keeps its own fill and stroke, and later children are
 drawn on top. For example, put a circle first and a larger star second: the
-circle remains visible behind the star, whose tips stop at the circle's edge.
+circle remains visible behind the star. The **Clip at** property chooses whether
+the star stops at the outer stroke edge, inner stroke edge, or stroke center.
 This is a clipping group rather than an intersection of all the children. See
 [properties](node-properties.md#clip).
