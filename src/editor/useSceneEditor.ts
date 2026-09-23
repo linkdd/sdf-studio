@@ -19,6 +19,7 @@ import {
   removeNode,
   updateNodeProperties,
 } from '@/editor/tree'
+import { useEditorHistory } from '@/editor/useEditorHistory'
 import { useEditorPersistence } from '@/editor/useEditorPersistence'
 
 type Tab = 'visualization' | 'code'
@@ -32,15 +33,21 @@ export function useSceneEditor() {
   } | null>(null)
   const [documentRevision, setDocumentRevision] = useState(0)
   const [initialState] = useState(loadEditorState)
-  const [sceneName, setSceneName] = useState(initialState.name)
+  const {
+    name: sceneName,
+    scene,
+    selectedId,
+    editingId,
+    collapsedIds,
+    setSceneName,
+    setScene,
+    setSelectedId,
+    setEditingId,
+    setCollapsedIds,
+    history,
+  } = useEditorHistory(initialState)
   const [tab, setTab] = useState<Tab>(initialState.tab)
-  const [scene, setScene] = useState(initialState.scene)
-  const [selectedId, setSelectedId] = useState(initialState.selectedId)
-  const [collapsedIds, setCollapsedIds] = useState(initialState.collapsedIds)
   const [dragItem, setDragItem] = useState<NodeDrag | null>(null)
-  const [editingId, setEditingId] = useState<string | null>(
-    initialState.editingId
-  )
   const compilation = useMemo(() => {
     try {
       return { ...compilePreviewScene(scene), error: null }
@@ -95,11 +102,14 @@ export function useSceneEditor() {
     try {
       const imported = parseSceneJson(await file.text())
 
+      history.end()
+      history.begin()
       setScene(imported.scene)
       setSceneName(imported.name)
       setSelectedId('scene')
       setEditingId(null)
       setCollapsedIds([])
+      history.end()
       setDragItem(null)
       setTab('visualization')
       editTrigger.current = null
@@ -150,6 +160,8 @@ export function useSceneEditor() {
 
     const branch = findNode(scene, id)
 
+    setScene((current) => removeNode(current, id))
+
     if (branch && findNode(branch, selectedId)) {
       setSelectedId(scene.id)
     }
@@ -163,8 +175,6 @@ export function useSceneEditor() {
         current.filter((entry) => !findNode(branch, entry))
       )
     }
-
-    setScene((current) => removeNode(current, id))
   }
 
   function selectNode(id: string, trigger: HTMLButtonElement) {
