@@ -14,7 +14,7 @@ export type NodeKind = (typeof nodeDefinitions)[number]['kind']
 
 export type OperationKind = 'union' | 'subtract' | 'intersect'
 
-export type ShapeKind = Exclude<NodeKind, OperationKind | 'group'>
+export type ShapeKind = Exclude<NodeKind, OperationKind | 'group' | 'clip'>
 
 export interface Transform {
   readonly x: number
@@ -57,7 +57,7 @@ export interface PolygonNode extends BaseNode {
 export type ShapeNode = PrimitiveNode | PolygonNode
 
 export interface GroupNode extends BaseNode {
-  readonly kind: 'group'
+  readonly kind: 'group' | 'clip'
   readonly children: readonly SceneNode[]
 }
 
@@ -101,7 +101,12 @@ export function isOperation(kind: string): kind is OperationKind {
 }
 
 export function canHaveChildren(node: SceneBranch): node is SceneContainer {
-  return node.kind === 'root' || node.kind === 'group' || isOperation(node.kind)
+  return (
+    node.kind === 'root' ||
+    node.kind === 'group' ||
+    node.kind === 'clip' ||
+    isOperation(node.kind)
+  )
 }
 
 export function defaultStyle(color = '#8dddc7'): Appearance {
@@ -126,7 +131,7 @@ export function createNode(
     transform: { x: 0, y: 0, rotation: 0, scale: 1 },
   }
 
-  if (kind === 'group') {
+  if (kind === 'group' || kind === 'clip') {
     return { ...base, kind, children: [] }
   }
 

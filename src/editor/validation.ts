@@ -129,7 +129,7 @@ export function parseScene(value: unknown): SceneRoot {
     const { id, kind, name, children } = record
     const transform = parseTransform(record.value.transform)
 
-    if (kind === 'group') {
+    if (kind === 'group' || kind === 'clip') {
       return { id, kind, name, transform, children: children.map(parseNode) }
     }
 

@@ -16,7 +16,7 @@ group, or operation:
 | --- | --- |
 | [Scene](node-library.md#scene) | Shapes, groups, operations |
 | [Group](node-library.md#group) | Shapes, groups, operations |
-| [Union](node-library.md#union), [Subtract](node-library.md#subtract), [Intersect](node-library.md#intersect) | Shapes, groups, operations |
+| [Union](node-library.md#union), [Subtract](node-library.md#subtract), [Intersect](node-library.md#intersect), [Clip](node-library.md#clip) | Shapes, groups, operations |
 | Shape | None |
 
 The Scene root is immutable: you cannot move it, rename it, or remove it. You also
@@ -69,6 +69,26 @@ The other operations work with the same parent/children structure:
   children. A circle inside a box gives us the part of the circle that fits
   within that box.
 
+To draw shapes inside another shape, use [Clip](node-library.md#clip):
+
+```text
+Scene
+└── Clip
+    ├── Circle (base)
+    └── Star (content)
+```
+
+The circle stays visible. The star is drawn over it, but only inside the
+circle's geometry. Add more content children to draw them over the earlier
+ones. Each keeps its own fill and stroke. An empty base hides all the content;
+an empty content node does not hide the base. Clip changes what is rendered;
+it does not constrain the gizmos. Hide the base's fill and stroke if you want
+an invisible clipping boundary.
+
+Clip's exported distance is the base's distance. When used as an operand of a
+Boolean operation, it contributes the base geometry and material; place the
+Boolean operation inside Clip to preserve the individual content colors.
+
 We can also nest operations. For example, a Union can combine two circles, then
 be used as the cutter of a Subtract. A Group can be an operand too; its children
 contribute their combined geometry.
@@ -78,7 +98,7 @@ Add at least two children to see the operation combine shapes.
 
 ## Sharp and smooth blending
 
-Each operation has a **Transition** property. **Sharp** keeps sharp junctions
+Union, Subtract, and Intersect have a **Transition** property. **Sharp** keeps sharp junctions
 between the shapes. **Smooth** rounds those junctions and lets you choose a
 **Smoothing radius**. The radius is measured in the operation's local coordinates.
 See [blending properties](node-properties.md#operation-blending).

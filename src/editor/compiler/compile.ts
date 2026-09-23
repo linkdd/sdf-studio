@@ -27,11 +27,13 @@ export function compile(
     const name = `sdf_node${nextIndex++}`
     const children = node.children.map(emit)
     const active = children.filter((child) => !child.empty)
-    const container = node.kind === 'group' || 'blend' in node
+    const container =
+      node.kind === 'group' || node.kind === 'clip' || 'blend' in node
     const empty = !!(
       container &&
       (active.length === 0 ||
-        (node.kind === 'subtract' && children[0]?.empty) ||
+        ((node.kind === 'subtract' || node.kind === 'clip') &&
+          children[0]?.empty) ||
         (node.kind === 'intersect' && children.some((child) => child.empty)))
     )
 
@@ -50,6 +52,7 @@ export function compile(
       scaleValue: scale,
       empty,
       group: node.kind === 'group',
+      clip: node.kind === 'clip',
       active,
     })
 

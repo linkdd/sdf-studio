@@ -17,7 +17,7 @@ export interface SceneGraphProps {
 
 export interface BranchProps extends SceneGraphProps {
   node: SceneBranch
-  operand?: 'Base' | 'Cutter'
+  operand?: 'Base' | 'Cutter' | 'Content'
   dropTarget: string | null
   setDropTarget: (id: string | null) => void
 }

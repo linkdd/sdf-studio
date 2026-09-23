@@ -140,7 +140,7 @@ test('invalid additions do not lose nodes or duplicate existing IDs', () => {
 })
 
 test('operations have no style and cannot gain one through property updates', () => {
-  for (const kind of ['union', 'subtract', 'intersect']) {
+  for (const kind of ['union', 'subtract', 'intersect', 'clip']) {
     const child = shape('child')
     const operation = { ...createNode(kind, 'op'), children: [child] }
 
@@ -220,7 +220,7 @@ test('blending applies only to operation nodes and preserves their operands and 
     assert.equal(findNode(sharp, 'op').blend.radius, 0.25)
   }
 
-  for (const kind of ['group', 'circle']) {
+  for (const kind of ['group', 'clip', 'circle']) {
     const root = addNode(createScene(), 'scene', createNode(kind, 'node'))
     const next = updateNodeProperties(root, 'node', {
       blend: { transition: 'smooth', radius: 0.2 },

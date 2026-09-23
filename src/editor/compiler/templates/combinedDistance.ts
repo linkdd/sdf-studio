@@ -13,6 +13,8 @@ export function distanceBodyTemplate(
 
   if (empty) {
     body = 'float d = 1e20;'
+  } else if (node.kind === 'clip') {
+    body = `float d = ${active[0].distance}(q);`
   } else if (container) {
     body = `float d = ${active[0].distance}(q);`
 

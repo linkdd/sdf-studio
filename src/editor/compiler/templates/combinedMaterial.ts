@@ -18,8 +18,8 @@ export function materialBodyTemplate(
   } else {
     material = `${local}\n    sdf_Material result = ${active[0].material}(q);`
 
-    // Cutters affect geometry only; the base supplies the cut boundary's appearance.
-    if (node.kind !== 'subtract' && active.length > 1) {
+    // Subtract and Clip expose their base material when used as Boolean operands.
+    if (node.kind !== 'subtract' && node.kind !== 'clip' && active.length > 1) {
       material += `\n    float d = ${active[0].distance}(q);`
 
       for (const child of active.slice(1)) {

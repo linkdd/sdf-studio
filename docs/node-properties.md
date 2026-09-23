@@ -222,3 +222,11 @@ The [Intersect](node-library.md#intersect) has the shared
 [name and transform](#shared-transform-and-name), plus
 [blending properties](#operation-blending). Use **Operands** to reorder its
 children. As with Union, the result gets its appearance from the children.
+
+## Clip
+
+The [Clip](node-library.md#clip) has the shared
+[name and transform](#shared-transform-and-name). In **Children**, the first
+child is the **Base** and the others are **Content**. Reorder the children to
+choose the base or change the content's drawing order. Each child keeps its own
+appearance; Clip has no fill, stroke, or blending settings.

@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "name": "Clipped star",
+  "scene": {
+    "id": "scene",
+    "kind": "root",
+    "name": "Scene",
+    "children": [
+      {
+        "id": "1",
+        "name": "Clipped star",
+        "transform": {
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1
+        },
+        "kind": "clip",
+        "children": [
+          {
+            "id": "3",
+            "name": "Visible circular base",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scale": 1
+            },
+            "kind": "circle",
+            "radius": 1,
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#8dddc7"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#8dddc7",
+                "width": 0.02
+              }
+            },
+            "children": []
+          },
+          {
+            "id": "2",
+            "name": "Red star",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scale": 1
+            },
+            "kind": "star",
+            "outerRadius": 1.5,
+            "innerRadius": 0.45,
+            "points": 5,
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#ff6666"
+              },
+              "stroke": {
+                "enabled": true,
+                "color": "#fff2cc",
+                "width": 0.04
+              }
+            },
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+}

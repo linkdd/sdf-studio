@@ -16,6 +16,12 @@ export function ChildOrderFields({
           The first child is the base. All following children cut into it.
         </p>
       )}
+      {node.kind === 'clip' && (
+        <p className="property-hint">
+          The first child stays visible. The others are drawn inside it, each
+          keeping its own fill and stroke.
+        </p>
+      )}
       {isOperation(node.kind) && node.children.length < 2 && (
         <p className="property-hint">
           Add at least two children to combine shapes.
@@ -25,9 +31,13 @@ export function ChildOrderFields({
         {node.children.map((child, index) => (
           <li key={child.id}>
             <span className="operand-name">{child.name}</span>
-            {node.kind === 'subtract' && (
+            {(node.kind === 'subtract' || node.kind === 'clip') && (
               <span className="operand-tag">
-                {index === 0 ? 'Base' : 'Cutter'}
+                {index === 0
+                  ? 'Base'
+                  : node.kind === 'clip'
+                    ? 'Content'
+                    : 'Cutter'}
               </span>
             )}
             <button

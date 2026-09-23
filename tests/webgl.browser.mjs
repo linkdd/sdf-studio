@@ -482,6 +482,42 @@ outColor = vec4(uvec4(bits, bits >> 8u, bits >> 16u, bits >> 24u) & uvec4(255u))
       )
     }
 
+    const clipped = node('clip', {
+      children: [
+        node('circle', { style: style('#ff0000', '#0000ff', 0.2) }),
+        node('group', {
+          children: [
+            node('box', { width: 3, height: 0.4, style: style('#00ff00') }),
+          ],
+        }),
+        node('circle', { radius: 0.15, style: style('#ffff00') }),
+      ],
+    })
+
+    sample(
+      [clipped],
+      [
+        ['clip preserves base geometry', 0, 0.8, -0.2],
+        ['clip ignores content outside base', 1.3, 0, 0.3],
+      ]
+    )
+    sample(
+      [clipped],
+      [
+        ['clip keeps visible base fill', 0, 0.8, [255, 0, 0, 255]],
+        ['clip keeps base outline', 0, 1.05, [0, 0, 255, 255]],
+        ['clip keeps content color', 0.5, 0, [0, 255, 0, 255]],
+        [
+          'clip layers later content above earlier content',
+          0,
+          0,
+          [255, 255, 0, 255],
+        ],
+        ['clip hides content outside base', 1.3, 0, [0, 0, 0, 0]],
+      ],
+      true
+    )
+
     const base = node('circle'),
       cutter = node('circle', { transform: transform(0, 0, 0, 0.5) })
 
@@ -499,7 +535,7 @@ outColor = vec4(uvec4(bits, bits >> 8u, bits >> 16u, bits >> 24u) & uvec4(255u))
 
     const empty = node('group')
 
-    for (const kind of ['group', 'union', 'subtract', 'intersect']) {
+    for (const kind of ['group', 'union', 'subtract', 'intersect', 'clip']) {
       sample([node(kind)], [[`${kind} empty`, 0, 0, 1e20]])
       sample(
         [node(kind, { children: [base] })],
@@ -527,6 +563,14 @@ outColor = vec4(uvec4(bits, bits >> 8u, bits >> 16u, bits >> 24u) & uvec4(255u))
     sample(
       [node('intersect', { children: [base, empty] })],
       [['empty intersection operand', 0, 0, 1e20]]
+    )
+    sample(
+      [node('clip', { children: [base, empty] })],
+      [['empty clip content leaves base', 0, 0, -1]]
+    )
+    sample(
+      [node('clip', { children: [empty, base] })],
+      [['empty clip base', 0, 0, 1e20]]
     )
     sample(
       [node('circle', { style: style(null, '#ff0000', 0.2) })],

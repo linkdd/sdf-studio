@@ -98,4 +98,11 @@ export const nodeDefinitions = [
     description: 'Keep the shared region',
     path: 'M12 3a10 10 0 0 0 0 18 10 10 0 0 0 0-18ZM9 9h6m-6 3h6m-6 3h6',
   },
+  {
+    category: 'Operations',
+    kind: 'clip',
+    label: 'Clip',
+    description: 'Keep other children inside the first',
+    path: 'M4 2v18h18M2 4h18v18M8 8h8v8H8Z',
+  },
 ] as const

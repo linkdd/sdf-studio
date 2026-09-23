@@ -43,7 +43,10 @@ test('JSON exports round-trip every node type, nested geometry, appearance and b
 
   assert.deepEqual(imported, { name, scene })
   assert.equal(compileScene(imported.scene).glsl, compileScene(scene).glsl)
-  assert.equal(nextAvailableNodeId(imported.scene, 1), 16)
+  assert.equal(
+    nextAvailableNodeId(imported.scene, 1),
+    nodeDefinitions.length + 2
+  )
 })
 
 test('empty scenes, Unicode names and UTF-8 BOMs can be imported', () => {

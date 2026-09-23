@@ -248,10 +248,12 @@ export function Branch(props: BranchProps) {
             {...props}
             node={child}
             operand={
-              node.kind === 'subtract'
+              node.kind === 'subtract' || node.kind === 'clip'
                 ? index === 0
                   ? 'Base'
-                  : 'Cutter'
+                  : node.kind === 'clip'
+                    ? 'Content'
+                    : 'Cutter'
                 : undefined
             }
           />

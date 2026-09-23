@@ -123,3 +123,12 @@ circle with a box clips the circle to the inside of the box. The junction can be
 or smooth, and the result gets its appearance from the children.
 
 See [properties](node-properties.md#intersect).
+
+## Clip
+
+Clip keeps the first child visible and draws all the following children inside
+its geometry. Each child keeps its own fill and stroke, and later children are
+drawn on top. For example, put a circle first and a larger star second: the
+circle remains visible behind the star, whose tips stop at the circle's edge.
+This is a clipping group rather than an intersection of all the children. See
+[properties](node-properties.md#clip).
