@@ -1,0 +1,71 @@
+.transform-gizmo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  touch-action: none;
+  user-select: none;
+}
+.gizmo-guides {
+  filter: drop-shadow(0 1px 1px #11161c);
+  fill: none;
+  stroke-width: 2;
+  pointer-events: none;
+}
+.gizmo-ring {
+  stroke: #eac87899;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+.gizmo-axis-x {
+  stroke: #ed9494;
+}
+.gizmo-axis-y {
+  stroke: #8dddc7;
+}
+.gizmo-scale-guide {
+  stroke: #a7c8fa99;
+  stroke-dasharray: 3 3;
+}
+.gizmo-handle {
+  pointer-events: all;
+  fill: #19222e;
+  stroke-width: 2;
+  cursor: grab;
+}
+.gizmo-handle:hover,
+.gizmo-handle:focus-visible {
+  fill: #405165;
+  outline: none;
+  stroke: #fff;
+}
+.transform-gizmo.is-dragging,
+.transform-gizmo.is-dragging .gizmo-handle {
+  cursor: grabbing;
+}
+.gizmo-x {
+  stroke: #ed9494;
+}
+.gizmo-y,
+.gizmo-move {
+  stroke: #8dddc7;
+}
+.gizmo-scale {
+  stroke: #a7c8fa;
+}
+.gizmo-rotate {
+  stroke: #eac878;
+}
+.gizmo-labels {
+  pointer-events: none;
+  fill: #fff;
+  font: 10px var(--font-mono);
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: #11161c;
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+.gizmo-labels text:nth-last-child(-n + 2) {
+  text-anchor: start;
+}

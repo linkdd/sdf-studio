@@ -1,0 +1,7 @@
+@import '@/styles/layout.css';
+@import '@/styles/palette.css';
+@import '@/styles/viewport.css';
+@import '@/styles/scene-graph.css';
+@import '@/styles/properties.css';
+@import '@/styles/polygon.css';
+@import '@/styles/gizmo.css';

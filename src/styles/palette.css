@@ -1,0 +1,138 @@
+.palette-node {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 7px;
+  text-align: left;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+}
+.palette-node:hover {
+  background: #232c33;
+  border-color: #35453f;
+}
+.node-icon-box {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #252d35;
+  border: 1px solid #333f49;
+  border-radius: 6px;
+  color: #b7c8d5;
+}
+.node-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.node-description {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+.node-description strong {
+  font-size: 12px;
+  font-weight: 500;
+}
+.node-description small {
+  font-size: 10px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.drag-handle {
+  color: #758394;
+  font-size: 18px;
+}
+.palette-node[draggable] {
+  cursor: grab;
+}
+.palette-node[draggable]:active {
+  cursor: grabbing;
+}
+.palette-node:hover .drag-handle,
+.palette-node:hover .node-icon {
+  color: var(--accent);
+}
+.panel-footer {
+  flex-shrink: 0;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+.center-panel {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 49px minmax(0, 1fr) 33px;
+}
+.workspace-toolbar {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: #171c22;
+}
+.tabs {
+  display: flex;
+  height: 100%;
+}
+.tabs button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 19px;
+  font-size: 12px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--muted);
+}
+.tabs button span {
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+.tabs button:hover {
+  background: #1d252b;
+  color: #dce2e9;
+}
+.tabs button[aria-selected='true'] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: #1d262a;
+}
+.workspace-format {
+  align-self: center;
+  padding: 0 18px;
+  font: 10px var(--font-mono);
+  color: #778594;
+  white-space: nowrap;
+}
+.tab-panel {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.visualization {
+  position: relative;
+  isolation: isolate;
+  background-color: #11161c;
+  background-image:
+    linear-gradient(#27313c55 1px, transparent 1px),
+    linear-gradient(90deg, #27313c55 1px, transparent 1px),
+    linear-gradient(#27313c33 1px, transparent 1px),
+    linear-gradient(90deg, #27313c33 1px, transparent 1px);
+  background-size:
+    128px 128px,
+    128px 128px,
+    32px 32px,
+    32px 32px;
+  background-position: center;
+}

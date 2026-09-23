@@ -1,0 +1,1833 @@
+{
+  "version": 1,
+  "name": "Orbital Courier",
+  "scene": {
+    "id": "scene",
+    "kind": "root",
+    "name": "Scene",
+    "children": [
+      {
+        "id": "7",
+        "name": "01 · Flight path",
+        "transform": {
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1
+        },
+        "kind": "group",
+        "children": [
+          {
+            "id": "1",
+            "name": "Orbit / outline only",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": -22,
+              "scale": 2.8
+            },
+            "kind": "ellipse",
+            "style": {
+              "fill": {
+                "enabled": false,
+                "color": "#92e8cd"
+              },
+              "stroke": {
+                "enabled": true,
+                "color": "#35566e",
+                "width": 0.008
+              }
+            },
+            "children": [],
+            "radiusX": 1,
+            "radiusY": 0.6
+          },
+          {
+            "id": "2",
+            "name": "Navigation halo",
+            "transform": {
+              "x": 0.1,
+              "y": 0.2,
+              "rotation": 0,
+              "scale": 2.1
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": false,
+                "color": "#92e8cd"
+              },
+              "stroke": {
+                "enabled": true,
+                "color": "#223d50",
+                "width": 0.007
+              }
+            },
+            "children": [],
+            "radius": 1
+          },
+          {
+            "id": "3",
+            "name": "Orbit waypoint 1",
+            "transform": {
+              "x": -2.6,
+              "y": 0.92,
+              "rotation": 0,
+              "scale": 0.06
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#ffd88d"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          },
+          {
+            "id": "4",
+            "name": "Orbit waypoint 2",
+            "transform": {
+              "x": -2.17,
+              "y": 1.33,
+              "rotation": 0,
+              "scale": 0.045
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#ffd88d"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          },
+          {
+            "id": "5",
+            "name": "Orbit waypoint 3",
+            "transform": {
+              "x": 2.5,
+              "y": -1.24,
+              "rotation": 0,
+              "scale": 0.05
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#ffd88d"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          },
+          {
+            "id": "6",
+            "name": "Orbit waypoint 4",
+            "transform": {
+              "x": 1.9,
+              "y": 1.35,
+              "rotation": 0,
+              "scale": 0.045
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#ffd88d"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          }
+        ]
+      },
+      {
+        "id": "23",
+        "name": "02 · Constellations",
+        "transform": {
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1
+        },
+        "kind": "group",
+        "children": [
+          {
+            "id": "8",
+            "name": "Beacon star 1",
+            "transform": {
+              "x": -2.5,
+              "y": 2.04,
+              "rotation": 12,
+              "scale": 0.13
+            },
+            "kind": "star",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#ffd88d"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "outerRadius": 1,
+            "innerRadius": 0.45,
+            "points": 5
+          },
+          {
+            "id": "9",
+            "name": "Beacon star 2",
+            "transform": {
+              "x": -1.38,
+              "y": 2.27,
+              "rotation": -10,
+              "scale": 0.07
+            },
+            "kind": "star",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#d3fff2"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "outerRadius": 1,
+            "innerRadius": 0.45,
+            "points": 5
+          },
+          {
+            "id": "10",
+            "name": "Beacon star 3",
+            "transform": {
+              "x": 0.76,
+              "y": 2.28,
+              "rotation": 12,
+              "scale": 0.13
+            },
+            "kind": "star",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#ffd88d"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "outerRadius": 1,
+            "innerRadius": 0.45,
+            "points": 5
+          },
+          {
+            "id": "11",
+            "name": "Beacon star 4",
+            "transform": {
+              "x": 2.68,
+              "y": 1.67,
+              "rotation": -15,
+              "scale": 0.14
+            },
+            "kind": "star",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#d3fff2"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "outerRadius": 1,
+            "innerRadius": 0.45,
+            "points": 5
+          },
+          {
+            "id": "12",
+            "name": "Beacon star 5",
+            "transform": {
+              "x": 3.1,
+              "y": 0.68,
+              "rotation": 0,
+              "scale": 0.065
+            },
+            "kind": "star",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#ffd88d"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "outerRadius": 1,
+            "innerRadius": 0.45,
+            "points": 5
+          },
+          {
+            "id": "13",
+            "name": "Beacon star 6",
+            "transform": {
+              "x": -2.98,
+              "y": -1.8,
+              "rotation": 18,
+              "scale": 0.1
+            },
+            "kind": "star",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#d3fff2"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "outerRadius": 1,
+            "innerRadius": 0.45,
+            "points": 5
+          },
+          {
+            "id": "14",
+            "name": "Beacon star 7",
+            "transform": {
+              "x": 0.86,
+              "y": -2.25,
+              "rotation": -8,
+              "scale": 0.09
+            },
+            "kind": "star",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#ffd88d"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "outerRadius": 1,
+            "innerRadius": 0.45,
+            "points": 5
+          },
+          {
+            "id": "15",
+            "name": "Constellation A",
+            "transform": {
+              "x": -2.225,
+              "y": 1.935,
+              "rotation": -20.897765498838854,
+              "scale": 0.36795465073837563
+            },
+            "kind": "segment",
+            "style": {
+              "fill": {
+                "enabled": false,
+                "color": "#92e8cd"
+              },
+              "stroke": {
+                "enabled": true,
+                "color": "#4c7489",
+                "width": 0.040765893215099894
+              }
+            },
+            "children": [],
+            "startX": -0.8,
+            "startY": 0,
+            "endX": 0.8,
+            "endY": 0
+          },
+          {
+            "id": "16",
+            "name": "Constellation B",
+            "transform": {
+              "x": -1.665,
+              "y": 2.05,
+              "rotation": 37.665621198583295,
+              "scale": 0.45004340068486726
+            },
+            "kind": "segment",
+            "style": {
+              "fill": {
+                "enabled": false,
+                "color": "#92e8cd"
+              },
+              "stroke": {
+                "enabled": true,
+                "color": "#4c7489",
+                "width": 0.033330118777818524
+              }
+            },
+            "children": [],
+            "startX": -0.8,
+            "startY": 0,
+            "endX": 0.8,
+            "endY": 0
+          },
+          {
+            "id": "17",
+            "name": "Constellation joint",
+            "transform": {
+              "x": -1.95,
+              "y": 1.83,
+              "rotation": 0,
+              "scale": 0.028
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#d3fff2"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          },
+          {
+            "id": "18",
+            "name": "Distant light 1",
+            "transform": {
+              "x": -3,
+              "y": 0.15,
+              "rotation": 0,
+              "scale": 0.02
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#4c7489"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          },
+          {
+            "id": "19",
+            "name": "Distant light 2",
+            "transform": {
+              "x": -1.52,
+              "y": -1.86,
+              "rotation": 0,
+              "scale": 0.02
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#4c7489"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          },
+          {
+            "id": "20",
+            "name": "Distant light 3",
+            "transform": {
+              "x": 1.53,
+              "y": 2.01,
+              "rotation": 0,
+              "scale": 0.02
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#4c7489"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          },
+          {
+            "id": "21",
+            "name": "Distant light 4",
+            "transform": {
+              "x": 2.98,
+              "y": -1.85,
+              "rotation": 0,
+              "scale": 0.02
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#4c7489"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          },
+          {
+            "id": "22",
+            "name": "Distant light 5",
+            "transform": {
+              "x": 0.1,
+              "y": 2.49,
+              "rotation": 0,
+              "scale": 0.02
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#4c7489"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          }
+        ]
+      },
+      {
+        "id": "63",
+        "name": "03 · Destination",
+        "transform": {
+          "x": 2.02,
+          "y": -1.04,
+          "rotation": -17,
+          "scale": 0.83
+        },
+        "kind": "group",
+        "children": [
+          {
+            "id": "56",
+            "name": "Ocean planet",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scale": 0.73
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#568cd6"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          },
+          {
+            "id": "59",
+            "name": "Sharp intersect / planetary shadow",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scale": 1
+            },
+            "kind": "intersect",
+            "blend": {
+              "transition": "sharp",
+              "radius": 0.1
+            },
+            "children": [
+              {
+                "id": "57",
+                "name": "Sphere clipping mask",
+                "transform": {
+                  "x": 0,
+                  "y": 0,
+                  "rotation": 0,
+                  "scale": 0.73
+                },
+                "kind": "circle",
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#344d83"
+                  },
+                  "stroke": {
+                    "enabled": false,
+                    "color": "#92e8cd",
+                    "width": 0.025
+                  }
+                },
+                "children": [],
+                "radius": 1
+              },
+              {
+                "id": "58",
+                "name": "Shadow disc",
+                "transform": {
+                  "x": 0.44,
+                  "y": -0.15,
+                  "rotation": 0,
+                  "scale": 0.83
+                },
+                "kind": "circle",
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#344d83"
+                  },
+                  "stroke": {
+                    "enabled": false,
+                    "color": "#92e8cd",
+                    "width": 0.025
+                  }
+                },
+                "children": [],
+                "radius": 1
+              }
+            ]
+          },
+          {
+            "id": "60",
+            "name": "Saturn ring / stroke only",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 13,
+              "scale": 1.14
+            },
+            "kind": "ellipse",
+            "style": {
+              "fill": {
+                "enabled": false,
+                "color": "#92e8cd"
+              },
+              "stroke": {
+                "enabled": true,
+                "color": "#ff877a",
+                "width": 0.036
+              }
+            },
+            "children": [],
+            "radiusX": 1,
+            "radiusY": 0.6
+          },
+          {
+            "id": "61",
+            "name": "Moon",
+            "transform": {
+              "x": 0.92,
+              "y": 0.78,
+              "rotation": 0,
+              "scale": 0.14
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#ffd88d"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          },
+          {
+            "id": "62",
+            "name": "Moon crater",
+            "transform": {
+              "x": 0.947,
+              "y": 0.815,
+              "rotation": 0,
+              "scale": 0.043
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#c19c67"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          }
+        ]
+      },
+      {
+        "id": "71",
+        "name": "04 · Telemetry",
+        "transform": {
+          "x": -2.37,
+          "y": 0.31,
+          "rotation": 8,
+          "scale": 1
+        },
+        "kind": "group",
+        "children": [
+          {
+            "id": "64",
+            "name": "Instrument housing",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scale": 0.61
+            },
+            "kind": "rounded-box",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#152d42"
+              },
+              "stroke": {
+                "enabled": true,
+                "color": "#4c7489",
+                "width": 0.018
+              }
+            },
+            "children": [],
+            "width": 1.6,
+            "height": 1.2,
+            "cornerRadius": 0.2
+          },
+          {
+            "id": "65",
+            "name": "Status block / box primitive",
+            "transform": {
+              "x": -0.29,
+              "y": 0.05,
+              "rotation": 0,
+              "scale": 0.13
+            },
+            "kind": "box",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#ffd88d"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "width": 1.6,
+            "height": 1.2
+          },
+          {
+            "id": "66",
+            "name": "Signal bar / active",
+            "transform": {
+              "x": 0.14,
+              "y": 0.14,
+              "rotation": 0,
+              "scale": 0.19
+            },
+            "kind": "capsule",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#92e8cd"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "startX": -0.6,
+            "startY": 0,
+            "endX": 0.6,
+            "endY": 0,
+            "radius": 0.3
+          },
+          {
+            "id": "67",
+            "name": "Signal bar / standby",
+            "transform": {
+              "x": 0.06,
+              "y": -0.05,
+              "rotation": 0,
+              "scale": 0.13
+            },
+            "kind": "capsule",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#4c7489"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "startX": -0.6,
+            "startY": 0,
+            "endX": 0.6,
+            "endY": 0,
+            "radius": 0.3
+          },
+          {
+            "id": "68",
+            "name": "Signal bar / idle",
+            "transform": {
+              "x": 0.01,
+              "y": -0.21,
+              "rotation": 0,
+              "scale": 0.08
+            },
+            "kind": "capsule",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#4c7489"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "startX": -0.6,
+            "startY": 0,
+            "endX": 0.6,
+            "endY": 0,
+            "radius": 0.3
+          },
+          {
+            "id": "69",
+            "name": "Telemetry lead",
+            "transform": {
+              "x": -0.12,
+              "y": -0.615,
+              "rotation": -90,
+              "scale": 0.26874999999999993
+            },
+            "kind": "segment",
+            "style": {
+              "fill": {
+                "enabled": false,
+                "color": "#92e8cd"
+              },
+              "stroke": {
+                "enabled": true,
+                "color": "#4c7489",
+                "width": 0.055813953488372106
+              }
+            },
+            "children": [],
+            "startX": -0.8,
+            "startY": 0,
+            "endX": 0.8,
+            "endY": 0
+          },
+          {
+            "id": "70",
+            "name": "Telemetry diamond",
+            "transform": {
+              "x": -0.12,
+              "y": -0.9,
+              "rotation": 45,
+              "scale": 0.11
+            },
+            "kind": "box",
+            "style": {
+              "fill": {
+                "enabled": false,
+                "color": "#92e8cd"
+              },
+              "stroke": {
+                "enabled": true,
+                "color": "#ff877a",
+                "width": 0.09
+              }
+            },
+            "children": [],
+            "width": 1.6,
+            "height": 1.2
+          }
+        ]
+      },
+      {
+        "id": "77",
+        "name": "05 · Comms",
+        "transform": {
+          "x": 1.79,
+          "y": 1.53,
+          "rotation": 12,
+          "scale": 1
+        },
+        "kind": "group",
+        "children": [
+          {
+            "id": "72",
+            "name": "Outer signal arc",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 140,
+              "scale": 0.4
+            },
+            "kind": "arc",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#4c7489"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 0.8,
+            "tubeRadius": 0.1,
+            "startAngle": -45,
+            "sweepAngle": 270
+          },
+          {
+            "id": "73",
+            "name": "Inner signal arc",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 140,
+              "scale": 0.25
+            },
+            "kind": "arc",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#92e8cd"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 0.8,
+            "tubeRadius": 0.1,
+            "startAngle": -45,
+            "sweepAngle": 270
+          },
+          {
+            "id": "74",
+            "name": "Transmitter core",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scale": 0.065
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#ffd88d"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "radius": 1
+          },
+          {
+            "id": "75",
+            "name": "Antenna trace",
+            "transform": {
+              "x": 0.475,
+              "y": -0.47,
+              "rotation": -47.48955292199916,
+              "scale": 0.3052278861768695
+            },
+            "kind": "segment",
+            "style": {
+              "fill": {
+                "enabled": false,
+                "color": "#92e8cd"
+              },
+              "stroke": {
+                "enabled": true,
+                "color": "#4c7489",
+                "width": 0.04914360934671609
+              }
+            },
+            "children": [],
+            "startX": -0.8,
+            "startY": 0,
+            "endX": 0.8,
+            "endY": 0
+          },
+          {
+            "id": "76",
+            "name": "Antenna trace terminal",
+            "transform": {
+              "x": 0.64,
+              "y": -0.65,
+              "rotation": 0,
+              "scale": 0.045
+            },
+            "kind": "circle",
+            "style": {
+              "fill": {
+                "enabled": false,
+                "color": "#92e8cd"
+              },
+              "stroke": {
+                "enabled": true,
+                "color": "#ffd88d",
+                "width": 0.16
+              }
+            },
+            "children": [],
+            "radius": 1
+          }
+        ]
+      },
+      {
+        "id": "55",
+        "name": "06 · Courier",
+        "transform": {
+          "x": -0.2,
+          "y": 0.2,
+          "rotation": -26,
+          "scale": 1.08
+        },
+        "kind": "group",
+        "children": [
+          {
+            "id": "30",
+            "name": "Blended exhaust",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scale": 1
+            },
+            "kind": "group",
+            "children": [
+              {
+                "id": "27",
+                "name": "Smooth union / plasma plume",
+                "transform": {
+                  "x": 0,
+                  "y": 0,
+                  "rotation": 0,
+                  "scale": 1
+                },
+                "kind": "union",
+                "blend": {
+                  "transition": "smooth",
+                  "radius": 0.21
+                },
+                "children": [
+                  {
+                    "id": "24",
+                    "name": "Coral plasma",
+                    "transform": {
+                      "x": 0,
+                      "y": -1.18,
+                      "rotation": 90,
+                      "scale": 0.54
+                    },
+                    "kind": "ellipse",
+                    "style": {
+                      "fill": {
+                        "enabled": true,
+                        "color": "#ff877a"
+                      },
+                      "stroke": {
+                        "enabled": false,
+                        "color": "#92e8cd",
+                        "width": 0.025
+                      }
+                    },
+                    "children": [],
+                    "radiusX": 1,
+                    "radiusY": 0.6
+                  },
+                  {
+                    "id": "25",
+                    "name": "Pink flame tip",
+                    "transform": {
+                      "x": 0,
+                      "y": -1.65,
+                      "rotation": 180,
+                      "scale": 0.39
+                    },
+                    "kind": "triangle",
+                    "style": {
+                      "fill": {
+                        "enabled": true,
+                        "color": "#f16c99"
+                      },
+                      "stroke": {
+                        "enabled": false,
+                        "color": "#92e8cd",
+                        "width": 0.025
+                      }
+                    },
+                    "children": [],
+                    "width": 1.7320508075688772,
+                    "height": 1.5
+                  },
+                  {
+                    "id": "26",
+                    "name": "Gold ignition",
+                    "transform": {
+                      "x": 0,
+                      "y": -0.83,
+                      "rotation": 0,
+                      "scale": 0.24
+                    },
+                    "kind": "circle",
+                    "style": {
+                      "fill": {
+                        "enabled": true,
+                        "color": "#ffd88d"
+                      },
+                      "stroke": {
+                        "enabled": false,
+                        "color": "#92e8cd",
+                        "width": 0.025
+                      }
+                    },
+                    "children": [],
+                    "radius": 1
+                  }
+                ]
+              },
+              {
+                "id": "28",
+                "name": "Hot core",
+                "transform": {
+                  "x": 0,
+                  "y": -1.13,
+                  "rotation": 90,
+                  "scale": 0.25
+                },
+                "kind": "ellipse",
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#ffd88d"
+                  },
+                  "stroke": {
+                    "enabled": false,
+                    "color": "#92e8cd",
+                    "width": 0.025
+                  }
+                },
+                "children": [],
+                "radiusX": 1,
+                "radiusY": 0.6
+              },
+              {
+                "id": "29",
+                "name": "Exhaust collar",
+                "transform": {
+                  "x": 0,
+                  "y": -0.78,
+                  "rotation": 0,
+                  "scale": 0.42
+                },
+                "kind": "capsule",
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#152d42"
+                  },
+                  "stroke": {
+                    "enabled": true,
+                    "color": "#d3fff2",
+                    "width": 0.035
+                  }
+                },
+                "children": [],
+                "startX": -0.6,
+                "startY": 0,
+                "endX": 0.6,
+                "endY": 0,
+                "radius": 0.3
+              }
+            ]
+          },
+          {
+            "id": "36",
+            "name": "Polygon fins",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scale": 1
+            },
+            "kind": "group",
+            "children": [
+              {
+                "id": "34",
+                "name": "Port fin",
+                "transform": {
+                  "x": -0.38,
+                  "y": -0.46,
+                  "rotation": 0,
+                  "scale": 1
+                },
+                "kind": "polygon",
+                "vertices": [
+                  {
+                    "x": 0,
+                    "y": 0.4
+                  },
+                  {
+                    "x": -0.46,
+                    "y": -0.06
+                  },
+                  {
+                    "x": -0.56,
+                    "y": -0.65
+                  },
+                  {
+                    "x": -0.03,
+                    "y": -0.36
+                  },
+                  {
+                    "x": 0.15,
+                    "y": -0.18
+                  }
+                ],
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#ff877a"
+                  },
+                  "stroke": {
+                    "enabled": true,
+                    "color": "#ffbfa0",
+                    "width": 0.028
+                  }
+                },
+                "children": []
+              },
+              {
+                "id": "35",
+                "name": "Starboard fin",
+                "transform": {
+                  "x": 0.38,
+                  "y": -0.46,
+                  "rotation": 0,
+                  "scale": 1
+                },
+                "kind": "polygon",
+                "vertices": [
+                  {
+                    "x": 0,
+                    "y": 0.4
+                  },
+                  {
+                    "x": 0.46,
+                    "y": -0.06
+                  },
+                  {
+                    "x": 0.56,
+                    "y": -0.65
+                  },
+                  {
+                    "x": 0.03,
+                    "y": -0.36
+                  },
+                  {
+                    "x": -0.15,
+                    "y": -0.18
+                  }
+                ],
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#f16c99"
+                  },
+                  "stroke": {
+                    "enabled": true,
+                    "color": "#ffb6bf",
+                    "width": 0.028
+                  }
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "33",
+            "name": "Smooth hull",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scale": 1
+            },
+            "kind": "union",
+            "blend": {
+              "transition": "smooth",
+              "radius": 0.12
+            },
+            "children": [
+              {
+                "id": "31",
+                "name": "Rounded fuselage",
+                "transform": {
+                  "x": 0,
+                  "y": -0.03,
+                  "rotation": 90,
+                  "scale": 0.78
+                },
+                "kind": "rounded-box",
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#92e8cd"
+                  },
+                  "stroke": {
+                    "enabled": true,
+                    "color": "#d3fff2",
+                    "width": 0.033
+                  }
+                },
+                "children": [],
+                "width": 1.6,
+                "height": 1.2,
+                "cornerRadius": 0.2
+              },
+              {
+                "id": "32",
+                "name": "Ivory nose cone",
+                "transform": {
+                  "x": 0,
+                  "y": 0.86,
+                  "rotation": 0,
+                  "scale": 0.57
+                },
+                "kind": "triangle",
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#d3fff2"
+                  },
+                  "stroke": {
+                    "enabled": true,
+                    "color": "#d3fff2",
+                    "width": 0.045
+                  }
+                },
+                "children": [],
+                "width": 1.7320508075688772,
+                "height": 1.5
+              }
+            ]
+          },
+          {
+            "id": "50",
+            "name": "Clipped stripe",
+            "transform": {
+              "x": 0,
+              "y": -0.49,
+              "rotation": 0,
+              "scale": 1
+            },
+            "kind": "intersect",
+            "blend": {
+              "transition": "sharp",
+              "radius": 0.1
+            },
+            "children": [
+              {
+                "id": "48",
+                "name": "Angled stripe",
+                "transform": {
+                  "x": 0,
+                  "y": 0,
+                  "rotation": 0,
+                  "scale": 1
+                },
+                "kind": "polygon",
+                "vertices": [
+                  {
+                    "x": -0.8,
+                    "y": 0.1
+                  },
+                  {
+                    "x": 0.8,
+                    "y": 0.38
+                  },
+                  {
+                    "x": 0.8,
+                    "y": 0.55
+                  },
+                  {
+                    "x": -0.8,
+                    "y": 0.27
+                  }
+                ],
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#568cd6"
+                  },
+                  "stroke": {
+                    "enabled": false,
+                    "color": "#92e8cd",
+                    "width": 0.025
+                  }
+                },
+                "children": []
+              },
+              {
+                "id": "49",
+                "name": "Hull clipping mask",
+                "transform": {
+                  "x": 0,
+                  "y": -0.03,
+                  "rotation": 90,
+                  "scale": 0.74
+                },
+                "kind": "rounded-box",
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#568cd6"
+                  },
+                  "stroke": {
+                    "enabled": false,
+                    "color": "#92e8cd",
+                    "width": 0.025
+                  }
+                },
+                "children": [],
+                "width": 1.6,
+                "height": 1.2,
+                "cornerRadius": 0.2
+              }
+            ]
+          },
+          {
+            "id": "47",
+            "name": "Porthole",
+            "transform": {
+              "x": 0,
+              "y": 0.3,
+              "rotation": 0,
+              "scale": 1.05
+            },
+            "kind": "group",
+            "children": [
+              {
+                "id": "39",
+                "name": "Sharp subtract / porthole bezel",
+                "transform": {
+                  "x": 0,
+                  "y": 0,
+                  "rotation": 0,
+                  "scale": 1
+                },
+                "kind": "subtract",
+                "blend": {
+                  "transition": "sharp",
+                  "radius": 0.1
+                },
+                "children": [
+                  {
+                    "id": "37",
+                    "name": "Ivory bezel",
+                    "transform": {
+                      "x": 0,
+                      "y": 0,
+                      "rotation": 0,
+                      "scale": 0.315
+                    },
+                    "kind": "circle",
+                    "style": {
+                      "fill": {
+                        "enabled": true,
+                        "color": "#152d42"
+                      },
+                      "stroke": {
+                        "enabled": true,
+                        "color": "#d3fff2",
+                        "width": 0.065
+                      }
+                    },
+                    "children": [],
+                    "radius": 1
+                  },
+                  {
+                    "id": "38",
+                    "name": "Aperture cutter",
+                    "transform": {
+                      "x": 0,
+                      "y": 0,
+                      "rotation": 0,
+                      "scale": 0.228
+                    },
+                    "kind": "circle",
+                    "style": {
+                      "fill": {
+                        "enabled": true,
+                        "color": "#92e8cd"
+                      },
+                      "stroke": {
+                        "enabled": false,
+                        "color": "#92e8cd",
+                        "width": 0.025
+                      }
+                    },
+                    "children": [],
+                    "radius": 1
+                  }
+                ]
+              },
+              {
+                "id": "40",
+                "name": "Dark observation glass",
+                "transform": {
+                  "x": 0,
+                  "y": 0,
+                  "rotation": 0,
+                  "scale": 0.221
+                },
+                "kind": "circle",
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#101e30"
+                  },
+                  "stroke": {
+                    "enabled": false,
+                    "color": "#92e8cd",
+                    "width": 0.025
+                  }
+                },
+                "children": [],
+                "radius": 1
+              },
+              {
+                "id": "43",
+                "name": "Smooth subtract / crescent reflection",
+                "transform": {
+                  "x": 0,
+                  "y": 0,
+                  "rotation": 0,
+                  "scale": 1
+                },
+                "kind": "subtract",
+                "blend": {
+                  "transition": "smooth",
+                  "radius": 0.025
+                },
+                "children": [
+                  {
+                    "id": "41",
+                    "name": "Blue reflection",
+                    "transform": {
+                      "x": 0,
+                      "y": 0,
+                      "rotation": 0,
+                      "scale": 0.193
+                    },
+                    "kind": "circle",
+                    "style": {
+                      "fill": {
+                        "enabled": true,
+                        "color": "#568cd6"
+                      },
+                      "stroke": {
+                        "enabled": false,
+                        "color": "#92e8cd",
+                        "width": 0.025
+                      }
+                    },
+                    "children": [],
+                    "radius": 1
+                  },
+                  {
+                    "id": "42",
+                    "name": "Reflection cutter",
+                    "transform": {
+                      "x": 0.079,
+                      "y": -0.018,
+                      "rotation": 0,
+                      "scale": 0.19
+                    },
+                    "kind": "circle",
+                    "style": {
+                      "fill": {
+                        "enabled": true,
+                        "color": "#92e8cd"
+                      },
+                      "stroke": {
+                        "enabled": false,
+                        "color": "#92e8cd",
+                        "width": 0.025
+                      }
+                    },
+                    "children": [],
+                    "radius": 1
+                  }
+                ]
+              },
+              {
+                "id": "46",
+                "name": "Smooth intersect / glass glint",
+                "transform": {
+                  "x": 0,
+                  "y": 0,
+                  "rotation": 0,
+                  "scale": 1
+                },
+                "kind": "intersect",
+                "blend": {
+                  "transition": "smooth",
+                  "radius": 0.025
+                },
+                "children": [
+                  {
+                    "id": "44",
+                    "name": "Glint lens A",
+                    "transform": {
+                      "x": -0.06,
+                      "y": 0.102,
+                      "rotation": 0,
+                      "scale": 0.11
+                    },
+                    "kind": "circle",
+                    "style": {
+                      "fill": {
+                        "enabled": true,
+                        "color": "#d3fff2"
+                      },
+                      "stroke": {
+                        "enabled": false,
+                        "color": "#92e8cd",
+                        "width": 0.025
+                      }
+                    },
+                    "children": [],
+                    "radius": 1
+                  },
+                  {
+                    "id": "45",
+                    "name": "Glint lens B",
+                    "transform": {
+                      "x": 0.015,
+                      "y": 0.15,
+                      "rotation": 0,
+                      "scale": 0.12
+                    },
+                    "kind": "circle",
+                    "style": {
+                      "fill": {
+                        "enabled": true,
+                        "color": "#d3fff2"
+                      },
+                      "stroke": {
+                        "enabled": false,
+                        "color": "#92e8cd",
+                        "width": 0.025
+                      }
+                    },
+                    "children": [],
+                    "radius": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "54",
+            "name": "Lower hull vent",
+            "transform": {
+              "x": 0,
+              "y": -0.6,
+              "rotation": 0,
+              "scale": 0.15
+            },
+            "kind": "capsule",
+            "style": {
+              "fill": {
+                "enabled": true,
+                "color": "#152d42"
+              },
+              "stroke": {
+                "enabled": false,
+                "color": "#92e8cd",
+                "width": 0.025
+              }
+            },
+            "children": [],
+            "startX": -0.6,
+            "startY": 0,
+            "endX": 0.6,
+            "endY": 0,
+            "radius": 0.3
+          },
+          {
+            "id": "53",
+            "name": "Antenna",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scale": 1
+            },
+            "kind": "union",
+            "blend": {
+              "transition": "sharp",
+              "radius": 0.1
+            },
+            "children": [
+              {
+                "id": "51",
+                "name": "Antenna stem",
+                "transform": {
+                  "x": 0,
+                  "y": 1.4,
+                  "rotation": 90,
+                  "scale": 0.1
+                },
+                "kind": "capsule",
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#ffd88d"
+                  },
+                  "stroke": {
+                    "enabled": false,
+                    "color": "#92e8cd",
+                    "width": 0.025
+                  }
+                },
+                "children": [],
+                "startX": -0.6,
+                "startY": 0,
+                "endX": 0.6,
+                "endY": 0,
+                "radius": 0.3
+              },
+              {
+                "id": "52",
+                "name": "Antenna tip",
+                "transform": {
+                  "x": 0,
+                  "y": 1.51,
+                  "rotation": 0,
+                  "scale": 0.078
+                },
+                "kind": "circle",
+                "style": {
+                  "fill": {
+                    "enabled": true,
+                    "color": "#ffd88d"
+                  },
+                  "stroke": {
+                    "enabled": false,
+                    "color": "#92e8cd",
+                    "width": 0.025
+                  }
+                },
+                "children": [],
+                "radius": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

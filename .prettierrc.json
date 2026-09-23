@@ -1,0 +1,24 @@
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "plugins": [
+    "prettier-plugin-organize-imports",
+    "@trivago/prettier-plugin-sort-imports"
+  ],
+  "importOrder": [
+    "^node:",
+    "^react(?:$|-|/)",
+    "^@codemirror/",
+    "<THIRD_PARTY_MODULES>",
+    "^@/editor/",
+    "^@/rendering/",
+    "^@/components/",
+    "^@/(?!.*\\.css$)",
+    "\\.css$"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
