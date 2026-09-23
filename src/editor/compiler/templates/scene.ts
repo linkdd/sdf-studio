@@ -1,7 +1,7 @@
 import type { NodeFunctions } from '@/editor/compiler/types.ts'
 
 interface Parameters {
-  dynamicTransforms: boolean
+  dynamicProperties: boolean
   declarations: readonly string[]
   helpers: string
   functions: readonly string[]
@@ -10,15 +10,15 @@ interface Parameters {
 }
 
 export function sceneTemplate({
-  dynamicTransforms,
+  dynamicProperties,
   declarations,
   helpers,
   functions,
   roots,
   distance,
 }: Parameters): string {
-  const modeComment = dynamicTransforms
-    ? '// Preview transforms are supplied as uniforms.'
+  const modeComment = dynamicProperties
+    ? '// Preview transforms and appearance are supplied as uniforms.'
     : "// Embed after your shader's version and precision declarations; no main/uniforms required."
   const scaledDistance = roots.length
     ? '(' + distance + ') * sceneScale'

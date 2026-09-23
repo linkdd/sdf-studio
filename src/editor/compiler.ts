@@ -4,7 +4,7 @@ import type { SceneRoot } from '@/editor/nodes.ts'
 
 export type { CompiledScene, SceneUniform } from '@/editor/compiler/types.ts'
 
-// Exported code contains literals; the preview binds changing transforms.
+// Exported code contains literals; the preview binds transforms and appearance.
 export function compileScene(scene: SceneRoot): CompiledScene {
   return compile(scene, false)
 }

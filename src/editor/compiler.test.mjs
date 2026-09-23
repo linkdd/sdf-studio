@@ -122,3 +122,56 @@ test('both compilers reject invalid rectangle dimensions', () => {
     }
   }
 })
+
+test('preview appearance edits reuse shader source while exports include the new style', () => {
+  const shape = createNode('circle', '1')
+  const scene = {
+    ...createScene(),
+    children: [{ ...createNode('clip', 'clip'), children: [shape] }],
+  }
+  const original = compilePreviewScene(scene)
+
+  for (const fillEnabled of [false, true]) {
+    for (const strokeEnabled of [false, true]) {
+      const edited = structuredClone(scene)
+      edited.children[0].children[0].style = {
+        fill: { enabled: fillEnabled, color: '#ff0080' },
+        stroke: { enabled: strokeEnabled, color: '#00ff00', width: 0.25 },
+      }
+      const changed = compilePreviewScene(edited)
+      const uniform = (name) =>
+        Array.from(changed.uniforms.find((u) => u.name.endsWith(name)).values)
+
+      assert.equal(changed.glsl, original.glsl)
+      assert.deepEqual(
+        uniform('_fill'),
+        fillEnabled ? [1, 0, Math.fround(128 / 255), 1] : [0, 0, 0, 0]
+      )
+      assert.deepEqual(
+        uniform('_stroke'),
+        strokeEnabled ? [0, 1, 0, 1] : [0, 0, 0, 0]
+      )
+      assert.deepEqual(uniform('_strokeWidth'), [0.25])
+      assert.notEqual(compileScene(edited).glsl, compileScene(scene).glsl)
+      assert.deepEqual(compileScene(edited).uniforms, [])
+      assert.doesNotMatch(compileScene(edited).glsl, /^uniform /m)
+    }
+  }
+})
+
+test('preview and export reject the same invalid appearance values', () => {
+  for (const compiler of [compileScene, compilePreviewScene]) {
+    for (const update of [
+      (style) => {
+        style.stroke.width = Infinity
+      },
+      (style) => {
+        style.fill.color = '#zzzzzz'
+      },
+    ]) {
+      const shape = createNode('circle', '1')
+      update(shape.style)
+      assert.throws(() => compiler({ ...createScene(), children: [shape] }))
+    }
+  }
+})

@@ -1,5 +1,4 @@
 import { scalar } from '@/editor/compiler/literals.ts'
-import { materialExpression } from '@/editor/compiler/templates/materialExpression.ts'
 import type { NodeFunctions } from '@/editor/compiler/types.ts'
 import type { SceneNode } from '@/editor/nodes.ts'
 
@@ -7,14 +6,15 @@ export function materialBodyTemplate(
   node: SceneNode,
   active: readonly NodeFunctions[],
   empty: boolean,
-  local: string
+  local: string,
+  appearance: string | null
 ): string {
   let material: string
 
   if (empty) {
     material = 'sdf_Material result = sdf_Material(vec4(0.0), vec4(0.0), 0.0);'
   } else if ('style' in node) {
-    material = `sdf_Material result = ${materialExpression(node.style)};`
+    material = `sdf_Material result = ${appearance};`
   } else {
     material = `${local}\n    sdf_Material result = ${active[0].material}(q);`
 

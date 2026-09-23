@@ -1,3 +1,4 @@
+import { compileAppearance } from '@/editor/compiler/appearance.ts'
 import { helperFunctions } from '@/editor/compiler/helpers.ts'
 import { distanceBodyTemplate } from '@/editor/compiler/templates/combinedDistance.ts'
 import { materialBodyTemplate } from '@/editor/compiler/templates/combinedMaterial.ts'
@@ -16,7 +17,7 @@ import type { SceneNode, SceneRoot } from '@/editor/nodes.ts'
 
 export function compile(
   scene: SceneRoot,
-  dynamicTransforms: boolean
+  dynamicProperties: boolean
 ): CompiledScene {
   const uniforms: SceneUniform[] = []
   const declarations: string[] = []
@@ -40,12 +41,28 @@ export function compile(
     const { local, scale } = compileTransform(
       node,
       name,
-      dynamicTransforms,
+      dynamicProperties,
       declarations,
       uniforms
     )
     const distance = distanceBodyTemplate(node, active, empty, container)
-    const material = materialBodyTemplate(node, active, empty, local)
+    const appearance =
+      'style' in node
+        ? compileAppearance(
+            node.style,
+            name,
+            dynamicProperties,
+            declarations,
+            uniforms
+          )
+        : null
+    const material = materialBodyTemplate(
+      node,
+      active,
+      empty,
+      local,
+      appearance
+    )
     const paint = nodePaintTemplate({
       name,
       local,
@@ -85,7 +102,7 @@ export function compile(
   return {
     uniforms,
     glsl: sceneTemplate({
-      dynamicTransforms,
+      dynamicProperties,
       declarations,
       helpers: helperFunctions(),
       functions,
