@@ -11,6 +11,27 @@ The editor remembers the last 100 edits during the current session. Reloading
 keeps the scene but starts a new undo history. Camera movement, selection, and
 opening or closing panels do not create undo entries.
 
+## Copy, cut, and paste
+
+Select a node in the scene graph, then use these shortcuts. On macOS, use
+Command instead of Ctrl.
+
+| Shortcut | Action |
+| --- | --- |
+| Ctrl+C | Copy the selected node and all its children. |
+| Ctrl+X | Copy the selected subtree, then remove it from the scene. |
+| Ctrl+V | Paste a copy with new IDs and select it. |
+
+With a container selected, paste adds the subtree as its last child. With a
+shape selected, paste inserts it immediately after that shape. Names,
+geometry, colors, and local transforms are preserved. Moving the copy under a
+different parent can therefore change its position in the scene.
+
+Scene itself cannot be copied or cut. Cut and paste are undoable. The clipboard
+contains node JSON, so copies also work between SDF Studio tabs. Unrelated text
+is ignored; invalid node data leaves the scene unchanged. When an input or the
+code viewer has focus, these shortcuts apply to text instead.
+
 ## Navigation and properties
 
 These shortcuts act on the focused control. Use **Tab** and **Shift+Tab** to

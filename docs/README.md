@@ -3,7 +3,7 @@
 - [Node library](node-library.md): the available nodes and what they do.
 - [Scene graph](scene-graph.md): how to organize nodes and combine shapes.
 - [Node properties](node-properties.md): what you can edit on each node.
-- [Keyboard shortcuts](shortcuts.md): undo, redo, and editor controls.
+- [Keyboard shortcuts](shortcuts.md): undo, redo, clipboard, and editor controls.
 - [Import & Export](import-export.md): save a scene as JSON or use it in a shader.
 
 ## Examples

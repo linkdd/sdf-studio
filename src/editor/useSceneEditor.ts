@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
 
+import { pasteNode } from '@/editor/clipboard'
 import { compilePreviewScene, compileScene } from '@/editor/compiler'
 import { parseSceneJson } from '@/editor/import'
 import { canHaveChildren, createNode } from '@/editor/nodes'
@@ -21,6 +22,7 @@ import {
 } from '@/editor/tree'
 import { useEditorHistory } from '@/editor/useEditorHistory'
 import { useEditorPersistence } from '@/editor/useEditorPersistence'
+import { useNodeClipboard } from '@/editor/useNodeClipboard'
 
 type Tab = 'visualization' | 'code'
 
@@ -90,6 +92,29 @@ export function useSceneEditor() {
       [sceneName, scene, tab, selectedId, editingId, collapsedIds]
     )
   )
+
+  useNodeClipboard({
+    scene,
+    selectedId,
+    onCut: (id) => {
+      history.end()
+      history.begin()
+      removeSceneNode(id)
+      history.end()
+    },
+    onPaste: (source) => {
+      const pasted = pasteNode(scene, selectedId, source)
+
+      history.end()
+      history.begin()
+      setScene(pasted.scene)
+      setSelectedId(pasted.id)
+      setEditingId(pasted.id)
+      setCollapsedIds((ids) => ids.filter((id) => id !== pasted.parentId))
+      history.end()
+    },
+    onError: (text) => setImportNotice({ error: true, text }),
+  })
 
   useEffect(() => {
     document.title = (sceneName.trim() || DEFAULT_SCENE_NAME) + ' — SDF Studio'
