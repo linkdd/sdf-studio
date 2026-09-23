@@ -165,10 +165,10 @@ export function useSceneEditor() {
     setScene((current) => removeNode(current, id))
   }
 
-  function editNode(id: string, trigger: HTMLButtonElement) {
+  function selectNode(id: string, trigger: HTMLButtonElement) {
     editTrigger.current = trigger
     setSelectedId(id)
-    setEditingId(id)
+    setEditingId(id === scene.id ? null : id)
   }
 
   function closeProperties() {
@@ -234,7 +234,7 @@ export function useSceneEditor() {
     scene,
     setScene,
     selectedId,
-    setSelectedId,
+    selectNode,
     collapsedIds,
     dragItem,
     setDragItem,
@@ -248,7 +248,6 @@ export function useSceneEditor() {
     importFile,
     toggleBranch,
     removeSceneNode,
-    editNode,
     closeProperties,
     changeProperties,
     dropNode,

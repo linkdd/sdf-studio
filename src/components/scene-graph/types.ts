@@ -7,7 +7,7 @@ export interface SceneGraphProps {
   onToggleBranch: (id: string) => void
   editingId: string | null
   dragItem: NodeDrag | null
-  onSelect: (id: string) => void
+  onSelect: (id: string, trigger: HTMLButtonElement) => void
   onRemove: (id: string) => void
   onEdit: (id: string, trigger: HTMLButtonElement) => void
   onDrop: (parentId: string) => void

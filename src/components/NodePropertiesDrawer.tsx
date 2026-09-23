@@ -19,7 +19,7 @@ export function NodePropertiesDrawer({
   }
 
   useEffect(() => {
-    if (nodeId) {
+    if (nodeId && document.activeElement?.classList.contains('node-edit')) {
       drawer.current
         ?.querySelector<HTMLInputElement>('input')
         ?.focus({ preventScroll: true })

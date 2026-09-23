@@ -28,8 +28,10 @@ all its children. It becomes the last child of that parent. To change the order,
 open the parent's properties and use the up/down buttons in **Children** or
 **Operands**. For Scene and Group, later children are drawn over earlier ones.
 
-The arrow beside a container expands or collapses it. The pen opens its
-[properties](node-properties.md), and the × removes it along with its children.
+The arrow beside a container expands or collapses it. Clicking a node opens its
+[properties](node-properties.md), or switches the drawer to that node if it is
+already open. The pen also opens the properties and focuses the first field.
+The × removes the node along with its children.
 
 ## Parent transforms
 

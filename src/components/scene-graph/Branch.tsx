@@ -109,7 +109,7 @@ export function Branch(props: BranchProps) {
           className="graph-node"
           draggable={!isRoot}
           aria-pressed={selectedId === node.id}
-          onClick={() => onSelect(node.id)}
+          onClick={(event) => onSelect(node.id, event.currentTarget)}
           onDragStart={(event) => {
             if (isRoot) {
               event.preventDefault()

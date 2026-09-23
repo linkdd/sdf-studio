@@ -24,7 +24,7 @@ function App() {
     scene,
     setScene,
     selectedId,
-    setSelectedId,
+    selectNode,
     collapsedIds,
     dragItem,
     setDragItem,
@@ -38,7 +38,6 @@ function App() {
     importFile,
     toggleBranch,
     removeSceneNode,
-    editNode,
     closeProperties,
     changeProperties,
     dropNode,
@@ -94,10 +93,10 @@ function App() {
           collapsedIds={collapsedIds}
           onToggleBranch={toggleBranch}
           dragItem={dragItem}
-          onSelect={setSelectedId}
+          onSelect={selectNode}
           onRemove={removeSceneNode}
           editingId={editingId}
-          onEdit={editNode}
+          onEdit={selectNode}
           onDrop={dropNode}
           onDragStart={setDragItem}
           onDragEnd={() => setDragItem(null)}
