@@ -29,6 +29,23 @@ export function findNode(
   }
 }
 
+export function findParent(
+  branch: SceneBranch,
+  id: string
+): SceneBranch | undefined {
+  if (branch.children.some((child) => child.id === id)) {
+    return branch
+  }
+
+  for (const child of branch.children) {
+    const parent = findParent(child, id)
+
+    if (parent) {
+      return parent
+    }
+  }
+}
+
 export function countNodes(branch: SceneBranch): number {
   return branch.children.reduce(
     (total, child) => total + 1 + countNodes(child),
@@ -39,20 +56,28 @@ export function countNodes(branch: SceneBranch): number {
 function appendChild<T extends SceneBranch>(
   branch: T,
   parentId: string,
-  node: SceneNode
+  node: SceneNode,
+  beforeId?: string
 ): T {
   if (!canHaveChildren(branch)) {
     return branch
   }
 
   if (branch.id === parentId) {
-    return { ...branch, children: [...branch.children, node] }
+    const children = [...branch.children]
+    const index = beforeId
+      ? children.findIndex((child) => child.id === beforeId)
+      : children.length
+
+    children.splice(index, 0, node)
+
+    return { ...branch, children }
   }
 
   return {
     ...branch,
     children: branch.children.map((child) =>
-      appendChild(child, parentId, node)
+      appendChild(child, parentId, node, beforeId)
     ),
   }
 }
@@ -60,7 +85,8 @@ function appendChild<T extends SceneBranch>(
 export function addNode(
   root: SceneRoot,
   parentId: string,
-  node: SceneNode
+  node: SceneNode,
+  beforeId?: string
 ): SceneRoot {
   const parent = findNode(root, parentId)
 
@@ -68,7 +94,11 @@ export function addNode(
     return root
   }
 
-  return appendChild(root, parentId, node)
+  if (beforeId && !parent.children.some((child) => child.id === beforeId)) {
+    return root
+  }
+
+  return appendChild(root, parentId, node, beforeId)
 }
 
 function withoutNode<T extends SceneBranch>(branch: T, id: string): T {
@@ -113,7 +143,8 @@ export function canMoveNode(
 export function moveNode(
   root: SceneRoot,
   id: string,
-  parentId: string
+  parentId: string,
+  beforeId?: string
 ): SceneRoot {
   if (!canMoveNode(root, id, parentId)) {
     return root
@@ -125,8 +156,23 @@ export function moveNode(
     return root
   }
 
+  const parent = findNode(root, parentId)!
+
+  if (beforeId && !parent.children.some((child) => child.id === beforeId)) {
+    return root
+  }
+
+  const index = parent.children.findIndex((child) => child.id === id)
+
+  if (
+    index >= 0 &&
+    (beforeId === id || parent.children[index + 1]?.id === beforeId)
+  ) {
+    return root
+  }
+
   // Move the original branch as a whole, preserving all its descendants.
-  return appendChild(withoutNode(root, id), parentId, node)
+  return appendChild(withoutNode(root, id), parentId, node, beforeId)
 }
 
 export function updateNodeProperties(

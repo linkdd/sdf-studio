@@ -2,7 +2,7 @@ import type { DragEvent } from 'react'
 
 import type { NodeDrag } from '@/editor/nodes'
 import { canHaveChildren, nodeColor } from '@/editor/nodes'
-import { canMoveNode } from '@/editor/tree'
+import { canMoveNode, findParent } from '@/editor/tree'
 
 import { NodeIcon } from '@/components/NodeIcon'
 import type { BranchProps } from '@/components/scene-graph/types'
@@ -23,17 +23,46 @@ export function Branch(props: BranchProps) {
   } = props
   const expanded = !props.collapsedIds.includes(node.id)
   const isRoot = node.kind === 'root'
-  const canDrop =
-    dragItem &&
-    canHaveChildren(node) &&
-    (dragItem.source === 'library' || canMoveNode(root, dragItem.id, node.id))
-  const isDropTarget = canDrop && dropTarget === node.id
   const childrenId = 'children-' + node.id
+  const position = dropTarget?.startsWith(node.id + ':')
+    ? dropTarget.slice(node.id.length + 1)
+    : null
+
+  function dropLocation(event: DragEvent<HTMLDivElement>) {
+    const bounds = event.currentTarget.getBoundingClientRect()
+    const fraction = (event.clientY - bounds.top) / bounds.height
+    const inside =
+      isRoot || (canHaveChildren(node) && fraction >= 0.25 && fraction <= 0.75)
+    const position = inside ? 'inside' : fraction < 0.5 ? 'before' : 'after'
+    const parent = inside ? node : findParent(root, node.id)
+
+    if (!dragItem || !parent || !canHaveChildren(parent)) {
+      return null
+    }
+
+    if (
+      dragItem.source === 'scene' &&
+      (dragItem.id === node.id || !canMoveNode(root, dragItem.id, parent.id))
+    ) {
+      return null
+    }
+
+    const index = parent.children.findIndex((child) => child.id === node.id)
+    const beforeId = inside
+      ? undefined
+      : position === 'before'
+        ? node.id
+        : parent.children[index + 1]?.id
+
+    return { parentId: parent.id, beforeId, position }
+  }
 
   function acceptDrag(event: DragEvent<HTMLDivElement>) {
     event.stopPropagation()
 
-    if (!canDrop) {
+    const location = dropLocation(event)
+
+    if (!location) {
       event.dataTransfer.dropEffect = 'none'
       setDropTarget(null)
 
@@ -43,7 +72,7 @@ export function Branch(props: BranchProps) {
     event.preventDefault()
     event.dataTransfer.dropEffect =
       dragItem?.source === 'library' ? 'copy' : 'move'
-    setDropTarget(node.id)
+    setDropTarget(node.id + ':' + location.position)
   }
 
   return (
@@ -53,7 +82,11 @@ export function Branch(props: BranchProps) {
           'graph-row' +
           (isRoot ? ' scene-root' : '') +
           (selectedId === node.id ? ' selected' : '') +
-          (isDropTarget ? ' drop-target' : '')
+          (position === 'inside'
+            ? ' drop-target'
+            : position
+              ? ' drop-' + position
+              : '')
         }
         data-node-id={node.id}
         onDragEnter={acceptDrag}
@@ -70,15 +103,17 @@ export function Branch(props: BranchProps) {
           event.stopPropagation()
           setDropTarget(null)
 
-          if (!canDrop) {
+          const location = dropLocation(event)
+
+          if (!location) {
             return
           }
 
-          if (!expanded) {
+          if (location.position === 'inside' && !expanded) {
             props.onToggleBranch(node.id)
           }
 
-          onDrop(node.id)
+          onDrop(location.parentId, location.beforeId)
         }}
       >
         {canHaveChildren(node) ? (

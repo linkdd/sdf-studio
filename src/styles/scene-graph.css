@@ -3,6 +3,7 @@
   width: max-content;
 }
 .graph-row {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -139,4 +140,21 @@
   border-top: 1px solid var(--border);
   font-size: 10px;
   color: #8593a3;
+}
+
+.graph-row.drop-before::before,
+.graph-row.drop-after::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  pointer-events: none;
+}
+.graph-row.drop-before::before {
+  top: -3px;
+}
+.graph-row.drop-after::after {
+  bottom: -3px;
 }

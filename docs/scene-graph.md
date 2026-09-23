@@ -24,9 +24,10 @@ cannot move a node inside itself or one of its children, as that would create a
 cycle in the tree.
 
 You can drag an existing node onto another parent to move it there, along with
-all its children. It becomes the last child of that parent. To change the order,
-open the parent's properties and use the up/down buttons in **Children** or
-**Operands**. For Scene and Group, later children are drawn over earlier ones.
+all its children. Drop in the middle of a container to append a child, or near the top or bottom
+of any node to insert before or after it. A line shows the insertion position.
+This also works when adding nodes from the library. You can still use the
+up/down buttons in the parent's **Children** or **Operands** properties. For Scene and Group, later children are drawn over earlier ones.
 
 The arrow beside a container expands or collapses it. Clicking a node opens its
 [properties](node-properties.md), or switches the drawer to that node if it is

@@ -10,7 +10,7 @@ export interface SceneGraphProps {
   onSelect: (id: string, trigger: HTMLButtonElement) => void
   onRemove: (id: string) => void
   onEdit: (id: string, trigger: HTMLButtonElement) => void
-  onDrop: (parentId: string) => void
+  onDrop: (parentId: string, beforeId?: string) => void
   onDragStart: (item: NodeDrag) => void
   onDragEnd: () => void
 }

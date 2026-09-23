@@ -16,7 +16,7 @@ export function SceneGraph(props: SceneGraphProps) {
       </div>
       <div className="graph-toolbar">
         <span>Hierarchy</span>
-        <span>Drop onto a parent</span>
+        <span>Drop inside or between nodes</span>
       </div>
       <div
         className="panel-scroll graph-scroll"

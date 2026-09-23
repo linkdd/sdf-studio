@@ -259,3 +259,44 @@ test('polygon edits update only the selected polygon and reject invalid vertex l
     false
   )
 })
+
+test('inserting and moving siblings honors positions in either direction', () => {
+  const root = {
+    ...createScene(),
+    children: [shape('a'), shape('b'), shape('c')],
+  }
+  const ids = (scene) => scene.children.map((node) => node.id)
+
+  assert.deepEqual(ids(moveNode(root, 'c', 'scene', 'a')), ['c', 'a', 'b'])
+  assert.deepEqual(ids(moveNode(root, 'a', 'scene', 'c')), ['b', 'a', 'c'])
+  assert.deepEqual(ids(moveNode(root, 'a', 'scene')), ['b', 'c', 'a'])
+  assert.deepEqual(ids(addNode(root, 'scene', shape('new'), 'b')), [
+    'a',
+    'new',
+    'b',
+    'c',
+  ])
+  assert.equal(moveNode(root, 'a', 'scene', 'a'), root)
+  assert.equal(moveNode(root, 'a', 'scene', 'b'), root)
+  assert.equal(moveNode(root, 'c', 'scene'), root)
+  assert.equal(moveNode(root, 'a', 'scene', 'missing'), root)
+  assert.equal(addNode(root, 'scene', shape('new'), 'missing'), root)
+  assert.deepEqual(ids(root), ['a', 'b', 'c'])
+})
+
+test('moving between parents inserts a whole subtree at the requested position', () => {
+  const branch = group('branch', [shape('leaf')])
+  const root = {
+    ...createScene(),
+    children: [branch, group('target', [shape('first')])],
+  }
+  const moved = moveNode(root, 'branch', 'target', 'first')
+
+  assert.deepEqual(
+    findNode(moved, 'target').children.map((node) => node.id),
+    ['branch', 'first']
+  )
+  assert.equal(findNode(moved, 'branch'), branch)
+  assert.equal(countNodes(moved), countNodes(root))
+  assert.equal(moveNode(root, 'branch', 'branch', 'leaf'), root)
+})

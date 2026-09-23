@@ -124,7 +124,7 @@ export function useSceneEditor() {
     )
   }
 
-  function addSceneNode(kind: NodeKind, parentId: string) {
+  function addSceneNode(kind: NodeKind, parentId: string, beforeId?: string) {
     const parent = findNode(scene, parentId)
 
     if (!parent || !canHaveChildren(parent)) {
@@ -137,7 +137,9 @@ export function useSceneEditor() {
 
     const id = String(availableId)
 
-    setScene((current) => addNode(current, parentId, createNode(kind, id)))
+    setScene((current) =>
+      addNode(current, parentId, createNode(kind, id), beforeId)
+    )
     setSelectedId(id)
   }
 
@@ -184,15 +186,15 @@ export function useSceneEditor() {
     }
   }
 
-  function dropNode(parentId: string) {
+  function dropNode(parentId: string, beforeId?: string) {
     if (!dragItem) {
       return
     }
 
     if (dragItem.source === 'library') {
-      addSceneNode(dragItem.kind, parentId)
+      addSceneNode(dragItem.kind, parentId, beforeId)
     } else {
-      setScene((current) => moveNode(current, dragItem.id, parentId))
+      setScene((current) => moveNode(current, dragItem.id, parentId, beforeId))
     }
 
     setDragItem(null)
