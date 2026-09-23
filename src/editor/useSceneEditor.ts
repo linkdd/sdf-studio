@@ -52,7 +52,7 @@ export function useSceneEditor() {
   const [dragItem, setDragItem] = useState<NodeDrag | null>(null)
   const compilation = useMemo(() => {
     try {
-      return { ...compilePreviewScene(scene), error: null }
+      return { ...compilePreviewScene(scene, selectedId), error: null }
     } catch (cause) {
       return {
         glsl: '',
@@ -61,7 +61,7 @@ export function useSceneEditor() {
           cause instanceof Error ? cause.message : 'Scene compilation failed.',
       }
     }
-  }, [scene])
+  }, [scene, selectedId])
   const code = useMemo(
     () =>
       tab === 'code' && !compilation.error ? compileScene(scene).glsl : '',

@@ -175,3 +175,46 @@ test('preview and export reject the same invalid appearance values', () => {
     }
   }
 })
+
+test('cutter selection changes preview uniforms without recompiling or changing exports', () => {
+  const cutter = createNode('circle', 'cut')
+  const operation = {
+    ...createNode('subtract', 'op'),
+    children: [createNode('box', 'base'), cutter, createNode('group', 'empty')],
+    transform: { x: 1, y: 0, rotation: 0, scale: 0.5 },
+  }
+  const scene = {
+    ...createScene(),
+    children: [
+      {
+        ...createNode('group', 'parent'),
+        transform: { x: 2, y: 3, rotation: 90, scale: 2 },
+        children: [operation],
+      },
+    ],
+  }
+  const original = compilePreviewScene(scene)
+  const selected = compilePreviewScene(scene, 'cut')
+  const uniform = (compiled, name) =>
+    Array.from(compiled.uniforms.find((u) => u.name === name).values)
+
+  assert.equal(selected.glsl, original.glsl)
+  assert.deepEqual(
+    uniform(selected, 'sdf_cutterParentPose').slice(0, 2),
+    [2, 5]
+  )
+  assert.deepEqual(uniform(selected, 'sdf_cutterParentScale'), [1])
+  assert.notDeepEqual(uniform(selected, 'sdf_cutterIndex'), [-1])
+  for (const id of ['scene', 'parent', 'op', 'base', 'missing']) {
+    const other = compilePreviewScene(scene, id)
+    assert.equal(other.glsl, selected.glsl)
+    assert.deepEqual(uniform(other, 'sdf_cutterIndex'), [-1])
+  }
+
+  cutter.transform.x = 2
+  operation.transform.scale = 3
+  const moved = compilePreviewScene(scene, 'cut')
+  assert.equal(moved.glsl, selected.glsl)
+  assert.deepEqual(uniform(moved, 'sdf_cutterParentScale'), [6])
+  assert.doesNotMatch(compileScene(scene).glsl, /sdf_cutter|sdf_selectedCutter/)
+})

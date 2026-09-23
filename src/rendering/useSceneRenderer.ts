@@ -43,6 +43,7 @@ export function useSceneRenderer(
     let resolution: WebGLUniformLocation | null = null
     let center: WebGLUniformLocation | null = null
     let height: WebGLUniformLocation | null = null
+    let pixelRatio: WebGLUniformLocation | null = null
     let latestUniforms: readonly SceneUniform[] = []
     let uniformsDirty = true
     const locations = new Map<string, WebGLUniformLocation | null>()
@@ -114,6 +115,7 @@ export function useSceneRenderer(
       gl.uniform2f(resolution, width, canvasHeight)
       gl.uniform2f(center, camera.current.x, camera.current.y)
       gl.uniform1f(height, camera.current.height)
+      gl.uniform1f(pixelRatio, ratio)
       gl.drawArrays(gl.TRIANGLES, 0, 3)
     }
 
@@ -143,12 +145,13 @@ export function useSceneRenderer(
           return
         }
 
-        program = createProgram(gl, vertexShader, fragmentShader(glsl))
+        program = createProgram(gl, vertexShader, fragmentShader(glsl, true))
         locations.clear()
         uniformsDirty = true
         resolution = gl.getUniformLocation(program, 'u_resolution')
         center = gl.getUniformLocation(program, 'u_center')
         height = gl.getUniformLocation(program, 'u_height')
+        pixelRatio = gl.getUniformLocation(program, 'u_pixelRatio')
         report(null)
         schedule()
       } catch (cause) {

@@ -9,6 +9,9 @@ export function compileScene(scene: SceneRoot): CompiledScene {
   return compile(scene, false)
 }
 
-export function compilePreviewScene(scene: SceneRoot): CompiledScene {
-  return compile(scene, true)
+export function compilePreviewScene(
+  scene: SceneRoot,
+  selectedId?: string
+): CompiledScene {
+  return compile(scene, true, selectedId)
 }

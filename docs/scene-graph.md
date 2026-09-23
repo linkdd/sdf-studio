@@ -61,6 +61,12 @@ Scale the circle down so that it fits inside the box, and we have our hole.
 We can move it around to change where the hole is, or add more cutters. To change
 which shape is the base, reorder the children in the Subtract properties.
 
+Selecting a cutter shows a dashed amber outline of its original geometry,
+alongside the gizmo. This makes it visible both inside and outside the base.
+If the cutter is a group or operation, the outline follows its combined
+silhouette. Selecting the base or another node hides the outline. This is a
+visualization aid only; it does not appear in JSON or GLSL exports.
+
 The other operations work with the same parent/children structure:
 
 - [Union](node-library.md#union) combines the children into one shape. Two

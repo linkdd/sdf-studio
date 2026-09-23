@@ -1,5 +1,7 @@
 import { compileAppearance } from '@/editor/compiler/appearance.ts'
 import { helperFunctions } from '@/editor/compiler/helpers.ts'
+import { compileSelection } from '@/editor/compiler/selection.ts'
+import type { Cutter } from '@/editor/compiler/selection.ts'
 import { distanceBodyTemplate } from '@/editor/compiler/templates/combinedDistance.ts'
 import { materialBodyTemplate } from '@/editor/compiler/templates/combinedMaterial.ts'
 import { nodeColorTemplate } from '@/editor/compiler/templates/nodeColor.ts'
@@ -17,16 +19,25 @@ import type { SceneNode, SceneRoot } from '@/editor/nodes.ts'
 
 export function compile(
   scene: SceneRoot,
-  dynamicProperties: boolean
+  dynamicProperties: boolean,
+  selectedId?: string
 ): CompiledScene {
   const uniforms: SceneUniform[] = []
   const declarations: string[] = []
   const functions: string[] = []
+  const cutters: Cutter[] = []
   let nextIndex = 0
 
-  function emit(node: SceneNode): NodeFunctions {
-    const name = `sdf_node${nextIndex++}`
-    const children = node.children.map(emit)
+  function emit(node: SceneNode, cutter = false): NodeFunctions {
+    const index = nextIndex++
+    const name = `sdf_node${index}`
+    const children = node.children.map((child, childIndex) =>
+      emit(child, node.kind === 'subtract' && childIndex > 0)
+    )
+
+    if (cutter) {
+      cutters.push({ id: node.id, index, distance: name })
+    }
     const active = children.filter((child) => !child.empty)
     const container =
       node.kind === 'group' || node.kind === 'clip' || 'blend' in node
@@ -92,12 +103,20 @@ export function compile(
     }
   }
 
-  const roots = scene.children.map(emit).filter((child) => !child.empty)
+  const roots = scene.children
+    .map((node) => emit(node))
+    .filter((child) => !child.empty)
   const distance = roots.length
     ? roots
         .map((child) => `${child.distance}(p)`)
         .reduce((a, b) => `min(${a}, ${b})`)
     : '1e20'
+
+  if (dynamicProperties) {
+    functions.push(
+      compileSelection(scene, selectedId, cutters, declarations, uniforms)
+    )
+  }
 
   return {
     uniforms,
